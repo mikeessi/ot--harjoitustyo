@@ -1,6 +1,10 @@
-# Otsikko
+# Ohjelmistotekniikka, harjoitustyö
 
-Tavallista tekstiä, jossa on *kursivoitua* ja **lihavoitua** sisältöä.
+## Tehtävät
+
+### Viikko 1
+
+**Lihavoitua** ja *kursivoitua* tekstiä.
 
 [gitlog.txt](https://github.com/mikeessi/ot--harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
