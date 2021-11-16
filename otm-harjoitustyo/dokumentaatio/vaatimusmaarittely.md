@@ -8,10 +8,10 @@ Digitaalinen versio kaikkien tuntemasta korttipelistä, pasianssista.
 
 ### Perusversion tarjoama toiminnallisuus
 
--Toimiva pasianssipeli
--Alkuvalikko, jossa voi muuttaa pelin ominaisuuksia esim. korttien selkäkuva, pelin vaikeusaste
--Hiscore taulukko tietokantaan
+- Toimiva pasianssipeli
+- Alkuvalikko, jossa voi muuttaa pelin ominaisuuksia esim. korttien selkäkuva, pelin vaikeusaste
+- Hiscore taulukko tietokantaan
 
 ### Lisäkehitysideoita
 
--Samaan ohjelmaan muita korttipelejä
+- Samaan ohjelmaan muita korttipelejä
