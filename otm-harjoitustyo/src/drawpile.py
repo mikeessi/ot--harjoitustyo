@@ -1,19 +1,13 @@
-from deck import Deck
-from load_image import load_image
-
 
 class Drawpile:
     
-    def __init__(self,display,deck):
+    def __init__(self,deck):
         self.coords = (800,20)
-        self.display = display
         self.deck = deck
-        self.cardback = load_image("back_1.png")
-        self.empty_deck = load_image("empty_1.png")
-        self.pile_rect = self.cardback.get_rect(x = self.coords[0], y = self.coords[1])
-    
+
     def update(self):
         if len(self.deck.cards) == 0:
-            self.display.blit(self.empty_deck, self.coords)
+            origin = "empty_draw"
         else:
-            self.display.blit(self.cardback, self.coords)
+            origin = "draw"
+        return None, origin

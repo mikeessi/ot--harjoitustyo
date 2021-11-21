@@ -8,14 +8,17 @@ from discardpile import DiscardPile
 
 class GameLoop:
 
-    def __init__(self, clock, event_queue, display,renderer):
+    def __init__(self, clock, event_queue, display,renderer, coordinates, card_size):
+
+        self.discardpile_rect = pygame.Rect(coordinates["discard"], card_size)
+        self.drawpile_rect = pygame.Rect(coordinates["draw"], card_size)
         self.clock = clock
         self.event_queue = event_queue
         self.display = display
         self.renderer = renderer
         self.deck = Deck()
-        self.drawpile = Drawpile(self.display, self.deck)
-        self.discardpile = DiscardPile(self.display, self.deck)
+        self.drawpile = Drawpile(self.deck)
+        self.discardpile = DiscardPile(self.deck)
         self.currently_dragging = False
         self.dragged_card = None
         self.renderer_list = [self.drawpile,self.discardpile]
@@ -26,8 +29,7 @@ class GameLoop:
         while True:
             if self.handle_events() == False:
                 break
-            self.display.fill((0,130,25))
-            self.renderer.render(self.renderer_list)
+            self.renderer.render(self.display, self.renderer_list)
 
         current_time = self.clock.get_ticks()
 
@@ -38,14 +40,14 @@ class GameLoop:
         for event in self.event_queue.get():
             if event.type == MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
-                if self.drawpile.pile_rect.collidepoint(mouse_pos):
+                if self.drawpile_rect.collidepoint(mouse_pos):
                     self.deck.draw_card()
-                if self.discardpile.pile_rect.collidepoint(mouse_pos):                    
+                if self.discardpile_rect.collidepoint(mouse_pos):                    
                     if self.currently_dragging == False:
                         card = self.discardpile.dragged_card()
                         if card:
                             self.currently_dragging = True
-                            self.dragged_card = DraggedCard(self.display,self.deck.discard,card)
+                            self.dragged_card = DraggedCard(self.deck.discard,card)
                             self.renderer_list.append(self.dragged_card)
                     elif self.currently_dragging == True:
                         self.cancel_drag()
