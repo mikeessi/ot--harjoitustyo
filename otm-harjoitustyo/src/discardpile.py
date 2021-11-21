@@ -7,9 +7,17 @@ class DiscardPile:
     def __init__(self, display, deck):
         self.display = display
         self.deck = deck
-        self.coords = (500, 200)
+        self.coords = (900, 20)
         self.empty_pile = load_image("empty_2.png")
-        self.discard_rect = self.empty_pile.get_rect(x=self.coords[0],y=self.coords[1])
+        self.pile_rect = self.empty_pile.get_rect(x=self.coords[0],y=self.coords[1])
+        self.drag = False
+
+    def dragged_card(self):
+        if len(self.deck.discard) == 0:
+            return None
+        else:
+            card = self.deck.discard.pop(-1)
+            return card
     
     def update(self):
         if len(self.deck.discard) == 0:

@@ -5,7 +5,7 @@ from load_image import load_image
 class Drawpile:
     
     def __init__(self,display,deck):
-        self.coords = (400,200)
+        self.coords = (800,20)
         self.display = display
         self.deck = deck
         self.cardback = load_image("back_1.png")

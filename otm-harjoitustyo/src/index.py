@@ -14,8 +14,6 @@ def main():
     display = pygame.display.set_mode((width, height))
 
     pygame.display.set_caption("Card Game")
-    
-    display.fill((0,130,25))
 
     clock = Clock()
     event_queue = EventQueue()

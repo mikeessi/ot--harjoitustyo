@@ -4,6 +4,7 @@ class Renderer:
 
     def render(self, list):
         for object in list:
-            object.update()
+            if object:
+                object.update()
         pygame.display.flip()
         
