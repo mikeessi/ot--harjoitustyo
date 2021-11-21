@@ -9,7 +9,7 @@ class DiscardPile:
         self.deck = deck
         self.coords = (500, 200)
         self.empty_pile = load_image("empty_2.png")
-        self.discard_rect = self.empty_pile.get_rect(x=500,y=200)
+        self.discard_rect = self.empty_pile.get_rect(x=self.coords[0],y=self.coords[1])
     
     def update(self):
         if len(self.deck.discard) == 0:

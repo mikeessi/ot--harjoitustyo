@@ -10,7 +10,7 @@ class Drawpile:
         self.deck = deck
         self.cardback = load_image("back_1.png")
         self.empty_deck = load_image("empty_1.png")
-        self.pile_rect = self.cardback.get_rect(x = 400, y = 200)
+        self.pile_rect = self.cardback.get_rect(x = self.coords[0], y = self.coords[1])
     
     def update(self):
         if len(self.deck.cards) == 0:
