@@ -3,12 +3,11 @@ from load_image import load_image
 
 class Renderer:
 
-    def __init__(self, coordinates):
+    def __init__(self, positions, images):
 
-        self.images = {"discard": "empty_2.png",
-                       "empty_draw": "empty_1.png",
-                       "draw": "back_1.png"}
-        self.coordinates = coordinates
+        self.images = images
+
+        self.positions = positions
 
     def render(self, display, list):
         display.fill((0,130,25))
@@ -19,9 +18,9 @@ class Renderer:
                     card_img = load_image(str(card))
                 if card == None:
                     card_img = load_image(self.images[origin])
-                coords = self.coordinates[origin]
+                pos = self.positions[origin]
                 if origin == "drag":
-                    coords = pygame.mouse.get_pos()
+                    pos = pygame.mouse.get_pos()
                 
-            display.blit(card_img, coords)
+            display.blit(card_img, pos)
         pygame.display.flip()

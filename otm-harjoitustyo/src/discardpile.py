@@ -3,7 +3,6 @@ class DiscardPile:
 
     def __init__(self, deck):
         self.deck = deck
-        self.coords = (900, 20)
 
     def dragged_card(self):
         if len(self.deck.discard) == 0:

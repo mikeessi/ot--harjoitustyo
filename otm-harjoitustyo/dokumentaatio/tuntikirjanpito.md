@@ -7,4 +7,6 @@
 | 16.11.| 4    | tutustuin tarkemmin pygamen Rect-luokkaan ja sain valmiiksi korttipakan, josta voi nostaa kortteja |
 | 21.11.| 3    | lisätty korteille drag & drop ominaisuus ja muuta pienempää |
 | 21.11.| 2    | koodia refaktoroitu vähän säännönmukaisemmaksi |
-| yht   | 15   | |
+| 22.11.| 2    | muokattu kuvia ja lisätty peliin loppupinot |
+| 22.11.| 2    | lisätty poetry ja alkeellinen testaus |
+| yht   | 19   | |

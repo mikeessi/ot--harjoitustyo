@@ -2,7 +2,6 @@
 class Drawpile:
     
     def __init__(self,deck):
-        self.coords = (800,20)
         self.deck = deck
 
     def update(self):
