@@ -13,26 +13,26 @@ class Renderer:
         display.fill((0,130,25))
         for tableau in tableau_list:
             self.render_tableau(display, tableau)
-        for object in others_list:
-            self.render_help(display, object)
+        for sprite in others_list:
+            self.render_help(display, sprite)
         if dragged_cards:
             self.render_dragged(display, dragged_cards)
         pygame.display.flip()
 
 
-    def render_help(self, display, object):
-        if object:
-            card, origin = object.update()
-            if card != None:
+    def render_help(self, display, sprite):
+        if sprite:
+            card, origin = sprite.update()
+            if card is not None:
                 card_img = load_image(str(card))
-            if card == None:
+            if card is None:
                 card_img = load_image(self.images[origin])
             pos = self.positions[origin]
-        
+
         display.blit(card_img, pos)
 
     def render_tableau(self, display, tableau):
-        tab = f"tableau_{tableau.id}"
+        tab = f"tableau_{tableau.tab_id}"
         pos_base = self.positions[tab]
         if len(tableau.cards) == 0:
             card_img = load_image(self.images[tab])
@@ -53,9 +53,3 @@ class Renderer:
             pos = (pos_base[0],pos_base[1]+pos_adjust)
             pos_adjust +=20
             display.blit(card_img, pos)
-            
-
-
-                
-        
-        

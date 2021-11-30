@@ -7,10 +7,10 @@ class DiscardPile:
     def dragged_card(self):
         if len(self.deck.discard) == 0:
             return None
-        else:
-            card = self.deck.discard.pop(-1)
-            return card
-    
+
+        card = self.deck.discard.pop(-1)
+        return card
+
     def update(self):
         if len(self.deck.discard) == 0:
             card = None

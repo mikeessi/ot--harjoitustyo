@@ -1,5 +1,5 @@
 import pygame
-from gameloop import GameLoop 
+from gameloop import GameLoop
 from clock import Clock
 from eventqueue import EventQueue
 from renderer import Renderer
@@ -24,7 +24,7 @@ def main():
                    "tableau_4": (500,150),
                    "tableau_5": (600,150),
                    "tableau_6": (700,150)}
-    
+
     images = {"discard": "empty_discard.png",
             "empty_draw": "empty_draw.png",
             "draw": "back_1.png",
@@ -41,7 +41,7 @@ def main():
             "tableau_6": "empty_discard.png"}
 
     card_size = (71,96)
-    
+
 
     display = pygame.display.set_mode((width, height))
 
@@ -51,7 +51,7 @@ def main():
     event_queue = EventQueue()
     renderer = Renderer(positions, images)
     game_loop = GameLoop(clock, event_queue, display, renderer, positions, card_size)
-    
+
 
 
     pygame.init()

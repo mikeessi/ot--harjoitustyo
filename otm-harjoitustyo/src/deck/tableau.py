@@ -2,9 +2,9 @@
 
 class Tableau:
 
-    def __init__(self, id):
+    def __init__(self, tab_id):
         self.cards = []
-        self.id = id
+        self.tab_id = tab_id
 
 
     def check_move(self, dragged_card):
@@ -24,23 +24,16 @@ class Tableau:
     def dragged_cards(self, card_rank):
         if card_rank > len(self.cards):
             return None
-        else:
-            dragged_cards = self.cards[card_rank:]
-            self.cards = self.cards[:card_rank]
-            
+        dragged_cards = self.cards[card_rank:]
+        self.cards = self.cards[:card_rank]
 
         return dragged_cards
 
-            
 
     def update(self):
-        origin = f"tableau_{self.id}"
+        origin = f"tableau_{self.tab_id}"
         if len(self.cards) == 0:
             return None, origin
-        else:
-            card = self.cards[-1]
-            return card, origin
-            
-        
-        
-        
+
+        card = self.cards[-1]
+        return card, origin

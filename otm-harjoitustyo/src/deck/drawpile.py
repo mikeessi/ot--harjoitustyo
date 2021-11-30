@@ -1,6 +1,6 @@
 
 class Drawpile:
-    
+
     def __init__(self,deck):
         self.deck = deck
 

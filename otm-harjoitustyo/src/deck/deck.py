@@ -1,5 +1,5 @@
-from deck.card import Card
 from random import shuffle
+from deck.card import Card
 
 
 class Deck:
@@ -14,10 +14,11 @@ class Deck:
         if len(self.cards) == 0:
             self.cards = self.discard[::-1]
             self.discard = []
-        else:
-            drawn_card = self.cards.pop()
-            self.discard.append(drawn_card)
-            return drawn_card
-    
+            return None
+
+        drawn_card = self.cards.pop()
+        self.discard.append(drawn_card)
+        return drawn_card
+
     def shuffle_deck(self):
         shuffle(self.cards)
