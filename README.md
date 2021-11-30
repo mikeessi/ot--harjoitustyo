@@ -1,9 +1,11 @@
 # Ohjelmistotekniikka, harjoitustyö
 
 Sovelluksen tarkoitus on toimia digitaalisena versiona tunnetusta pasianssin Klondike-versiosta.
+Testaajalle HUOM!: Tällä hetkellä pelipakkojen korttien siirteleminen onnistuu korttien yläreunasta painamalla.
 
 - [Vaatimusmäärittely](./otm-harjoitustyo/dokumentaatio/vaatimusmaarittely.md)
 - [Tuntikirjanpito](./otm-harjoitustyo/dokumentaatio/tuntikirjanpito.md)
+- [Arkkitehtuurikuvaus](./otm-harjoitustyo/dokumentaatio/arkkitehtuuri.md)
 
 ## Asennus
 
@@ -45,4 +47,12 @@ Testikattavuusraportin saa generoitua komennolla:
 
 ```bash
 poetry run invoke coverage-report
+```
+
+### Pylint
+
+Tiedoston .pylintrc määrittelemät tarkistukset voi tehdä komennolla:
+
+```bash
+poetry run invoke lint
 ```
