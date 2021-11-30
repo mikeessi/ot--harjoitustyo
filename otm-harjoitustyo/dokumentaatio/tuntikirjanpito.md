@@ -9,4 +9,5 @@
 | 21.11.| 2    | koodia refaktoroitu vähän säännönmukaisemmaksi |
 | 22.11.| 2    | muokattu kuvia ja lisätty peliin loppupinot |
 | 22.11.| 2    | lisätty poetry ja alkeellinen testaus |
-| yht   | 19   | |
+| 30.11.| 3    | refaktorointia ja lisätty pientä pelipakkojen toimintaa |
+| yht   | 22   | |
