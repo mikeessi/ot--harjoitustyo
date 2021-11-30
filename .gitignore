@@ -9,4 +9,4 @@
 /otm-harjoitustyo/.pytest_cache
 /otm-harjoitustyo/.coverage
 /otm-harjoitustyo/src/tests/__pycache__
-
+/otm-harjoitustyo/src/deck/__pycache__
