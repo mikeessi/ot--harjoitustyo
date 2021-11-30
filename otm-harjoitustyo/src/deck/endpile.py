@@ -24,11 +24,9 @@ class Endpile:
         if card.suit == self.suit:
             if len(self.pile) == 0:
                 if card.value == 0:
-                    self.pile.append(card)
                     return True
             else:
                 if card.value == self.pile[-1].value+1:
-                    self.pile.append(card)
                     return True
 
         return False

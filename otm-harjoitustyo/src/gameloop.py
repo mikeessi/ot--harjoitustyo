@@ -35,14 +35,30 @@ class GameLoop:
        
         self.tableau_list = []
         self.tableau_rects = []
+        self.tableau_union_rects = []
+
         for id in range(7):
+            pos_base = positions[f"tableau_{id}"]
             tableau = Tableau(id)
+            single_pile_rects = []
+            pos_adjust = 0
+            for rect in range(20):
+                pos = (pos_base[0],pos_base[1]+pos_adjust)
+                single_pile_rects.append(pygame.Rect(pos,card_size))
+                pos_adjust += 20
+            self.tableau_rects.append(single_pile_rects)
             self.tableau_list.append(tableau)
-            self.tableau_rects.append(pygame.Rect(positions[f"tableau_{id}"], card_size))
+        
+        for sequence in self.tableau_rects:
+            first_rect = sequence[0]
+            union_rect = first_rect.unionall(sequence[1:])
+            self.tableau_union_rects.append(union_rect)
+
        
         self.currently_dragging = False
         self.dragged_card = None
-        self.no_hits = True      
+        self.no_hits = True
+
         
         
 
@@ -52,7 +68,7 @@ class GameLoop:
         while True:
             if self.handle_events() == False:
                 break
-            self.renderer.render(self.display, self.renderer_list, self.tableau_list)
+            self.renderer.render(self.display, self.renderer_list, self.tableau_list, self.dragged_card)
 
         current_time = self.clock.get_ticks()
 
@@ -72,26 +88,28 @@ class GameLoop:
             if event.type == pygame.QUIT:
                 return False
 
-    def cancel_drag(self, bool):
-        self.renderer_list.pop(-1)
-        if bool == False:
+    def cancel_drag(self, destination, success):
+        if success == False:
             self.dragged_card.cancel_drag()
+        else:
+            for card in self.dragged_card.cards:
+                destination.append(card)
         self.dragged_card = None
         self.currently_dragging = False
 
     def handle_endpiles(self, mouse_pos):
-        endpile = self.check_rects(mouse_pos, self.endpile_rects)
+        endpile = self.check_rects(mouse_pos, self.endpile_rects, False)
         if endpile != None:
             self.no_hits = False
             if self.currently_dragging == True:
                 if self.endpile_list[endpile].check_move(self.dragged_card.card) == True:
-                    self.cancel_drag(True)
+                    self.cancel_drag(self.endpile_list[endpile].pile, True)
     
     def handle_drawpile(self, mouse_pos):
         if self.drawpile_rect.collidepoint(mouse_pos):
             self.no_hits = False
             if self.currently_dragging == True:
-                self.cancel_drag(False)           
+                self.cancel_drag(None, False)           
             else:
                 self.deck.draw_card()
             
@@ -103,26 +121,38 @@ class GameLoop:
                 card = self.discardpile.dragged_card()
                 if card:
                     self.currently_dragging = True
-                    self.dragged_card = DraggedCard(self.deck.discard,card)
-                    self.renderer_list.append(self.dragged_card)
+                    self.dragged_card = DraggedCard(self.deck.discard,[card])
             elif self.currently_dragging == True:
-                self.cancel_drag(False)
+                self.cancel_drag(None, False)
 
     def handle_tableaus(self, mouse_pos):
-        tableau = self.check_rects(mouse_pos, self.tableau_rects)
-        if tableau != None:
+        tableau_num = self.check_rects(mouse_pos, self.tableau_union_rects, False)
+        if tableau_num != None:
+            tableau_ranks = self.tableau_rects[tableau_num]
+            tableau_rank = self.check_rects(mouse_pos, tableau_ranks, True)
             self.no_hits = False
-            if self.currently_dragging == True:
-                if self.tableau_list[tableau].check_move(self.dragged_card.card) == True:
-                    self.cancel_drag(True)
+            if self.currently_dragging == False:
+                cards = self.tableau_list[tableau_num].dragged_cards(tableau_rank)
+                if cards:
+                    self.currently_dragging = True
+                    self.dragged_card = DraggedCard(self.tableau_list[tableau_num].cards, cards)
+            elif self.currently_dragging == True:
+                if self.tableau_list[tableau_num].check_move(self.dragged_card) == True:
+                    self.cancel_drag(self.tableau_list[tableau_num].cards, True)
+            
     
     def handle_no_hits(self):
         if self.currently_dragging == True:
             if self.no_hits == True:
-                self.cancel_drag(False)
+                self.cancel_drag(None, False)
 
-    def check_rects(self, mouse_pos, rect_list):
-        for rect_index, rect in enumerate(rect_list):
+    def check_rects(self, mouse_pos, rect_list, reverse):
+        if reverse:
+            rects = reversed(list(enumerate(rect_list)))
+        else:
+            rects = enumerate(rect_list)
+
+        for rect_index, rect in rects:
             if rect.collidepoint(mouse_pos):
                 return rect_index
                 
