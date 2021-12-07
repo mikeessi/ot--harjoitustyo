@@ -40,7 +40,10 @@ class Renderer:
         else:
             pos_adjust = 0
             for card in tableau.cards:
-                card_img = load_image(str(card))
+                if card.face_down is True:
+                    card_img = load_image("back_1.png")
+                else:
+                    card_img = load_image(str(card))
                 pos = (pos_base[0],pos_base[1]+pos_adjust)
                 display.blit(card_img, pos)
                 pos_adjust += 20

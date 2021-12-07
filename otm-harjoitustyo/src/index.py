@@ -1,8 +1,9 @@
 import pygame
-from gameloop import GameLoop
-from clock import Clock
-from eventqueue import EventQueue
-from renderer import Renderer
+from deck.gameloop import GameLoop
+from interface.clock import Clock
+from interface.eventqueue import EventQueue
+from interface.renderer import Renderer
+from interface.hitboxes import Hitboxes as Hb
 
 def main():
 
@@ -48,11 +49,10 @@ def main():
     pygame.display.set_caption("Solitaire")
 
     clock = Clock()
+    hitboxes = Hb(positions, card_size)
     event_queue = EventQueue()
     renderer = Renderer(positions, images)
-    game_loop = GameLoop(clock, event_queue, display, renderer, positions, card_size)
-
-
+    game_loop = GameLoop(clock, event_queue, display, renderer, hitboxes)
 
     pygame.init()
     game_loop.start()

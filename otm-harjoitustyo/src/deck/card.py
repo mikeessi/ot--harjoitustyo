@@ -1,3 +1,4 @@
+
 class Card:
 
     suits = ["diamonds", "clubs", "hearts", "spades"]
@@ -7,6 +8,7 @@ class Card:
     def __init__(self, value, suit):
         self.suit = suit
         self.value = value
+        self.face_down = False
         if suit in [0,2]:
             self.color = "Red"
         else:

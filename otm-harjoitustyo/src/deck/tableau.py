@@ -1,5 +1,4 @@
 
-
 class Tableau:
 
     def __init__(self, tab_id):
@@ -22,13 +21,20 @@ class Tableau:
         return False
 
     def dragged_cards(self, card_rank):
-        if card_rank > len(self.cards):
+        if card_rank >= len(self.cards):
+            return None
+        if self.cards[-1].face_down is True:
+            self.turn_card()
+            return None
+        if self.cards[card_rank].face_down is True:
             return None
         dragged_cards = self.cards[card_rank:]
         self.cards = self.cards[:card_rank]
 
         return dragged_cards
 
+    def turn_card(self):
+        self.cards[-1].face_down = False
 
     def update(self):
         origin = f"tableau_{self.tab_id}"
