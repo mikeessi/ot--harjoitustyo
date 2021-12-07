@@ -8,7 +8,7 @@ Digitaalinen versio kaikkien tuntemasta korttipelistä, pasianssista.
 
 ### Perusversion tarjoama toiminnallisuus
 
-- Toimiva pasianssipeli
+- Toimiva pasianssipeli  | 95% valmis
 - Alkuvalikko, jossa voi muuttaa pelin ominaisuuksia esim. korttien selkäkuva, pelin vaikeusaste
 - Hiscore taulukko tietokantaan
 
