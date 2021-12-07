@@ -12,4 +12,5 @@
 | 30.11.| 3    | refaktorointia ja lisätty pientä pelipakkojen toimintaa |
 | 30.11 | 3    | pientä refaktorointia ja laajenettu pelipakkojen toimintaa |
 | 30.11 | 2    | pylint käyttöön, koodin siivoamista ja testejä |
-| yht   | 27   | |
+| 7.12  | 7    | refaktorointia, lisää toiminnallisuutta, testejä |
+| yht   | 35   | |
