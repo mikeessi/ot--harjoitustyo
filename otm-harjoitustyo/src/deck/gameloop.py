@@ -8,8 +8,39 @@ from deck.discardpile import DiscardPile
 from deck.tableau import Tableau
 
 class GameLoop:
+    """Luokka, joka mallintaa pelin päälooppia.
+    
+    Attributes:
+        clock: Clock-olio, toimii kellona.
+        event_queue: EventQueue-olio, joka tarkistaa pygame-tapahtumat.
+        display: Itse peliruutu.
+        renderer: Renderer-olio, joka piirtää kuvat ruudulle.
+        hb: Hitboxes-olio, joka pitää huolta pygame.Rect-olioista.
+        deck: Deck-olio, joka toimii pelipakkana.
+        discardpile: DiscardPile-olio, joka toimii hylkypakkana.
+        drawpile: DrawPile-olio, joka toimii nostopakkana.
+        renderer_list: Lista renderöitävistä objekteista renderöijälle.
+        endpile_list: Lista Endpile-olioista, jotka toimivat pelin loppupinoina.
+        tableau_list: Lista Tableau-olioista, jotka toimivat pelipinoina.
+        currently_dragging: Tieto siitä, raahataanko tällä hetkellä korttia.
+        dragged_card: Tällä hetkellä raahattava DraggedCard-olio.
+        no_hits: Tieto siitä, osuttiinko klikkauksella mihinkään Rect-olioon.
+        points: Tämänhetkiset pisteet.
+        deck_length: Pakan korttien määrä (pelin alussa).
+        tabl_length: Korttien määrä pelipinoissa (pelin alussa).
+        endpile_length: Korttien määrä loppupinoissa (pelin alussa).
+    """
 
     def __init__(self,clock,event_queue,display,renderer,hitboxes):
+        """Luokan konstruktori, joka luo peliloopin.
+        
+        Args:
+            clock: Clock-olio, joka toimii kellona.
+            event_queue: EventQueue-olio, joka käsittelee pygame-tapahtumat.
+            display: Peliruutu.
+            renderer: Renderer-olio, joka hoitaa pelin piirtämisen.
+            hitboxes: Hitboxes-olio, joka pitää huolen pygame.Rect-olioista.
+        """
 
         self.clock = clock
         self.event_queue = event_queue
@@ -46,6 +77,12 @@ class GameLoop:
 
 
     def start(self):
+        """Aloittaa pelin ja sisältää itse peliloopin.
+        
+        Ennen pelin alkua sekoittaa pakan ja jakaa kortit alkusijainteihin.
+        Loopissa päivittää ruudun tapahtumat.
+        
+        """
 
         self.deck.shuffle_deck()
         self.setup_game()
@@ -61,6 +98,13 @@ class GameLoop:
         self.clock.tick(60)
 
     def handle_events(self):
+        """Käsittelee tapahtumat, jotka EventQueue-olio antaa.
+        
+        Käsittelee käyttäjän syötteet ja toimii sopivalla tavalla syötteestä riippuen.
+        
+        Returns:
+            False, kun painetaan Esc, tai ruksia, ts. kun peli halutaan sulkea.
+        """
         for event in self.event_queue.get():
             if event.type == MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
@@ -89,6 +133,15 @@ class GameLoop:
                 return False
 
     def cancel_drag(self, destination, success):
+        """Peruu kortin raahauksen.
+        
+        Siirtää kortit joko alkuperäiseen sijaintiin tai kohteeseen riippuen siitä, oliko liike sallittu.
+        Kutsuu pisteidenpäivttäjää jokaisen siirron jälkeen joka tapauksessa.
+        
+        Args:
+            destination: Raahattujen korttien määränpää.
+            success: Tieto siitä, oliko liike sallittu.
+        """
         if success is False:
             self.dragged_card.cancel_drag()
         else:
@@ -99,6 +152,14 @@ class GameLoop:
         self.currently_dragging = False
 
     def handle_endpiles(self, endpile_index):
+        """Käsittelee loppupinojen klikkauksen.
+        
+        Jos kortteja raahataan, tarkistaa siirron laillisuuden, jos kortteja ei raahata, niin nostaa
+        päällimäisen kortin loppupinosta raahattavaksi.
+
+        Args:
+            endpile_index: Klikatun loppupinon indeksi endpile_list-listassa.
+        """
         self.no_hits = False
         if self.currently_dragging is False:
             card = self.endpile_list[endpile_index].dragged_card()
@@ -110,12 +171,21 @@ class GameLoop:
                 self.cancel_drag(self.endpile_list[endpile_index].pile, True)
 
     def handle_drawpile(self):
+        """Käsittelee nostopinon klikkauksen.
+        
+        Jos korttia raahataan klikatessa, ei tee mitään, jos ei raahata, niin nostaa kortin.
+        """
         if self.currently_dragging is True:
             pass
         else:
             self.deck.draw_card()
 
     def handle_discardpile(self):
+        """Käsittelee hylkypinon klikkauksen.
+        
+        Jos korttia raahataan, niin peruu raahauksen, jos ei raahata, niin ottaa
+        päällimäisen kortin raahattavaksi.
+        """
         if self.currently_dragging is False:
             card = self.discardpile.dragged_card()
             if card:
@@ -125,6 +195,15 @@ class GameLoop:
             self.cancel_drag(None, False)
 
     def handle_tableaus(self, tableau_index, tableau_rank):
+        """Käsittelee pelipinojen klikkauksen.
+        
+        Jos kortteja ei raahata klikkaushetkellä, koittaa nostaa klikatun kortin raahattavaksi, mikäli sallittua.
+        Muutoin tarkistaa, onko raahattujen korttien siirto mahdollista klikattuun pinoon.
+
+        Args:
+            tableau_index: Klikatun pelipinon indeksi tableau_list-listassa.
+            tableau_rank: Klikatun kortin indeksi sitä vastaavassa Tableau.cards-listassa.
+        """
         if self.currently_dragging is False:
             cards = self.tableau_list[tableau_index].dragged_cards(tableau_rank)
             if cards:
@@ -135,11 +214,15 @@ class GameLoop:
                 self.cancel_drag(self.tableau_list[tableau_index].cards, True)
 
     def handle_no_hits(self):
+        """Käsittelee tilanteen, kun klikataan ohi kaikesta.
+        """
         if self.currently_dragging is True:
             if self.no_hits is True:
                 self.cancel_drag(None, False)
 
     def setup_game(self):
+        """Jakaa kortit naama alas pelipinoihin ja kääntää sitten viimeisen kortin naama ylös.
+        """
         for i in range(1,8):
             for rank in range(i):
                 card = self.deck.cards.pop(-1)
@@ -149,6 +232,8 @@ class GameLoop:
             tabl.cards[-1].face_down = False
 
     def restart(self):
+        """Aloittaa pelin alusta. Nollaa kaiken ja luo uudet oliot.
+        """
         self.points = 0
         self.deck = Deck()
         self.discardpile = DiscardPile(self.deck)
@@ -171,6 +256,11 @@ class GameLoop:
         self.start()
 
     def calculate_points(self):
+        """Laskee pisteet.
+        
+        Vertaa jokaisella siirrolla korttien määrää eri pinoissa, ja sen perusteella vähentää tai lisää pisteitä.
+        Varmistaa, että pisteet eivät mene negatiiviseksi.
+        """
         curr_tabl_lengths = sum([len(tabl.cards) for tabl in self.tableau_list])
         curr_endpile_lengths = sum([len(endpile.pile) for endpile in self.endpile_list])
         curr_deck_length = len(self.deck.cards)+len(self.deck.discard)
