@@ -14,4 +14,5 @@
 | 30.11 | 2    | pylint käyttöön, koodin siivoamista ja testejä |
 | 7.12  | 7    | refaktorointia, lisää toiminnallisuutta, testejä |
 | 13.12 | 2    | hitbox-ongelma korjattu ja pistesysteemiä kehitelty |
-| yht   | 37   | |
+| 13.12 | 2    | docstringejä kirjoiteltu |
+| yht   | 39   | |
