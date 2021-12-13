@@ -39,6 +39,11 @@ class GameLoop:
         self.dragged_card = None
         self.no_hits = True
 
+        self.points = 0
+        self.deck_length = 24
+        self.tabl_lenght = 28
+        self.endpile_length = 0
+
 
     def start(self):
 
@@ -48,6 +53,7 @@ class GameLoop:
         while True:
             if self.handle_events() is False:
                 break
+            
             self.renderer.render(self.display,self.renderer_list,self.tableau_list,
             self.dragged_card)
 
@@ -59,7 +65,7 @@ class GameLoop:
             if event.type == MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 self.no_hits = False
-                pile, index, rank = self.hb.check_rects(mouse_pos)
+                pile, index, rank = self.hb.check_rects(mouse_pos, self.tableau_list)
                 if pile == "drawpile":
                     self.handle_drawpile()
                 if pile == "discardpile":
@@ -88,6 +94,7 @@ class GameLoop:
         else:
             for card in self.dragged_card.cards:
                 destination.append(card)
+        self.calculate_points()
         self.dragged_card = None
         self.currently_dragging = False
 
@@ -142,6 +149,7 @@ class GameLoop:
             tabl.cards[-1].face_down = False
 
     def restart(self):
+        self.points = 0
         self.deck = Deck()
         self.discardpile = DiscardPile(self.deck)
         self.drawpile = Drawpile(self.deck)
@@ -161,3 +169,30 @@ class GameLoop:
             self.tableau_list.append(tableau)
 
         self.start()
+
+    def calculate_points(self):
+        curr_tabl_lengths = sum([len(tabl.cards) for tabl in self.tableau_list])
+        curr_endpile_lengths = sum([len(endpile.pile) for endpile in self.endpile_list])
+        curr_deck_length = len(self.deck.cards)+len(self.deck.discard)
+
+        if curr_deck_length < self.deck_length and curr_tabl_lengths > self.tabl_lenght:
+            self.points += 5
+
+        elif curr_deck_length < self.deck_length and curr_endpile_lengths > self.endpile_length:
+            self.points += 10
+
+        elif curr_tabl_lengths < self.tabl_lenght and curr_endpile_lengths > self.endpile_length:
+            self.points += 10
+            
+        elif curr_tabl_lengths > self.tabl_lenght and curr_endpile_lengths < self.endpile_length:
+            self.points -= 15
+
+        self.endpile_length = curr_endpile_lengths
+        self.deck_length = curr_deck_length
+        self.tabl_lenght = curr_tabl_lengths
+
+        if self.points < 0:
+            self.points = 0
+
+
+        

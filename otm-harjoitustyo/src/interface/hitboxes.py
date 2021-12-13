@@ -36,15 +36,15 @@ class Hitboxes:
             "endpile": self.endpile_rects
         }
 
-    def check_rects(self, mouse_pos):
+    def check_rects(self, mouse_pos, tabl_list):
         if self.check_drawpile(mouse_pos) is not None:
             return self.check_drawpile(mouse_pos)
         elif self.check_discardpile(mouse_pos) is not None:
             return self.check_discardpile(mouse_pos)
         elif self.check_endpiles(mouse_pos) is not None:
             return self.check_endpiles(mouse_pos)
-        elif self.check_tableaus(mouse_pos) is not None:
-            return self.check_tableaus(mouse_pos)
+        elif self.check_tableaus(mouse_pos, tabl_list) is not None:
+            return self.check_tableaus(mouse_pos, tabl_list)
         else:
             return None, None, None
 
@@ -80,11 +80,14 @@ class Hitboxes:
 
         return None
 
-    def check_tableaus(self, mouse_pos):
+    def check_tableaus(self, mouse_pos, tabl_list):
         tableau_index = self.check_lists(mouse_pos, self.tableau_union_rects, False)
         if tableau_index is not None:
+            hitbox_detect_start = len(tabl_list[tableau_index].cards)
             tableau = self.tableau_rects[tableau_index]
-            tableau_rank = self.check_lists(mouse_pos, tableau, True)
+            tableau_rank = self.check_lists(mouse_pos, tableau[:hitbox_detect_start], True)
+            if tableau_rank is None:
+                tableau_rank = 0
             return "tableau", tableau_index, tableau_rank
 
         return None

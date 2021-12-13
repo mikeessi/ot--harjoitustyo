@@ -13,4 +13,5 @@
 | 30.11 | 3    | pientä refaktorointia ja laajenettu pelipakkojen toimintaa |
 | 30.11 | 2    | pylint käyttöön, koodin siivoamista ja testejä |
 | 7.12  | 7    | refaktorointia, lisää toiminnallisuutta, testejä |
-| yht   | 35   | |
+| 13.12 | 2    | hitbox-ongelma korjattu ja pistesysteemiä kehitelty |
+| yht   | 37   | |

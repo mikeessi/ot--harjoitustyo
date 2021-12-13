@@ -6,6 +6,7 @@ class Deck:
     def __init__(self):
         self.cards = []
         self.discard = []
+        self.deck_flips = 0
         for i in range(4):
             for j in range(13):
                 self.cards.append(Card(j,i))
@@ -14,6 +15,7 @@ class Deck:
         if len(self.cards) == 0:
             self.cards = self.discard[::-1]
             self.discard = []
+            self.deck_flips += 1
             return None
 
         drawn_card = self.cards.pop()
