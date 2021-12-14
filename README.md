@@ -6,6 +6,7 @@ Testaajalle HUOM!: Tällä hetkellä pelipakkojen korttien siirteleminen onnistu
 - [Vaatimusmäärittely](./otm-harjoitustyo/dokumentaatio/vaatimusmaarittely.md)
 - [Tuntikirjanpito](./otm-harjoitustyo/dokumentaatio/tuntikirjanpito.md)
 - [Arkkitehtuurikuvaus](./otm-harjoitustyo/dokumentaatio/arkkitehtuuri.md)
+- [Käyttöohje](./otm-harjoitustyo/dokumentaatio/kayttoohje.md)
 
 Projektin viimeisin [release](https://github.com/mikeessi/ot--harjoitustyo/releases).
 
