@@ -1,5 +1,9 @@
 # Arkkitehtuurikuvaus
 
+## Rakenne
+
+Sovellus koostuu [interface](../src/interface/) -hakemistosta, jossa on käyttöliittymään liittyvät luokat, sekä [deck](../src/deck/) -hakemistosta, jossa on sovelluslogiikan kannalta tärkeät luokat.
+
 ## Sovelluslogiikka
 
 Sovelluksen logiikka koostuu kortteja, korttipakkaa ja pelimatolla olevia pinoja mallintavat luokat:
