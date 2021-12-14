@@ -50,3 +50,42 @@ class TestGameloop(unittest.TestCase):
         self.gl.cancel_drag(self.gl.endpile_list[0].pile, True)
         dragged_card = self.gl.dragged_card
         self.assertEqual(dragged_card, None)
+
+    def test_handle_endpiles_no_hits_toggle(self):
+        self.gl.handle_endpiles(1)
+        self.assertEqual(self.gl.no_hits, False)
+
+    def test_handle_endpiles_not_dragging_toggle_dragging(self):
+        self.gl.endpile_list[1].pile.append(Card(1,3))
+        self.gl.handle_endpiles(1)
+        self.assertEqual(self.gl.currently_dragging, True)
+
+    def test_handle_endpiles_while_dragging_fail(self):
+        self.gl.dragged_card = DraggedCard(self.gl.deck.discard, [Card(1,3)])
+        self.gl.currently_dragging = True
+        self.gl.handle_endpiles(1)
+        self.assertEqual(len(self.gl.endpile_list[1].pile), 0)
+
+    def test_handle_endpiles_while_dragging_success(self):
+        self.gl.dragged_card = DraggedCard(self.gl.deck.discard, [Card(0,1)])
+        self.gl.currently_dragging = True
+        self.gl.handle_endpiles(1)
+        self.assertEqual(len(self.gl.endpile_list[1].pile), 1)
+
+    def test_handle_no_hits_both_true(self):
+        self.gl.currently_dragging = True
+        self.gl.no_hits = True
+        self.gl.handle_no_hits()
+        self.assertEqual(self.gl.currently_dragging, False)
+
+    def test_handle_no_hits_both_false(self):
+        self.gl.currently_dragging = False
+        self.gl.no_hits = False
+        self.gl.handle_no_hits()
+        self.assertEqual(self.gl.currently_dragging, False)
+
+    def test_handle_no_hits_false(self):
+        self.gl.currently_dragging = True
+        self.gl.no_hits = False
+        self.gl.handle_no_hits()
+        self.assertEqual(self.gl.currently_dragging, True)

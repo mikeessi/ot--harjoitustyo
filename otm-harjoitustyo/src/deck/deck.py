@@ -8,7 +8,7 @@ class Deck:
     Attributes:
         cards: Lista Card-olioista nostopakassa.
         discard: Lista Card-olioista hylkypinossa.
-        deck_flips: Pisteytystä varten laskuri pakan käännöistä. 
+        deck_flips: Pisteytystä varten laskuri pakan käännöistä.
     """
     def __init__(self):
         """Luokan konstruktori, joka luo uuden pelipakan, ja samalla sen kortit Card-olioina.

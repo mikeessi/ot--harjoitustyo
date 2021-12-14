@@ -8,7 +8,7 @@ class Drawpile:
 
     def __init__(self,deck):
         """Luokan konstruktori, joka luo nostopakan
-        
+
         Args:
             deck: Pelipakka
         """
@@ -16,7 +16,7 @@ class Drawpile:
 
     def update(self):
         """Renderöintiä varten palauttaa tiedon siitä, onko pakka tyhjä vai ei
-        
+
         Returns:
             None, "empty_draw", jos pakka tyhjä, None, "draw", jos ei.
         """

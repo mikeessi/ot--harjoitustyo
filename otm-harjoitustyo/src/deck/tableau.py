@@ -1,7 +1,7 @@
 
 class Tableau:
     """Luokka, joka mallintaa pelipinoja.
-    
+
     Attributes:
         cards: Lista Card-olioista, jotka pelipinossa ovat.
         tab_id: Pelipinon indeksi.
@@ -9,7 +9,7 @@ class Tableau:
 
     def __init__(self, tab_id):
         """Luokan konstruktori, joka luo uuden pelipinon.
-        
+
         Args:
             tab_id: Pelipinon id.
         """
@@ -19,13 +19,13 @@ class Tableau:
 
     def check_move(self, dragged_card):
         """Tarkistaa pelipinoon kohdistuvan siirron laillisuuden.
-        
+
         Jos pelipino on tyhjä, antaa siirtää vain kuninkaan.
         Muutoin tarkistaa, että värit eivät ole samat, ja kortin arvo on sopiva.
-        
+
         Args:
             dragged_card: DraggedCard-olio, jota koitetaan siirtää pelipinoon.
-            
+
         Returns:
             True, jos siirto on laillinen, muutoin False.
         """
@@ -44,15 +44,15 @@ class Tableau:
 
     def dragged_cards(self, card_rank):
         """Nostaa pelipinosta kortit halutusta kohdasta raahattavaksi.
-        
+
         Tarkistaa, että halutussa sijainnissa on kortti.
         Tarkistaa, että kortti, josta lähtien nosto halutaan tehdä, on naama ylös.
         Jos pelipinon viimeinen kortti on naama alas, niin kääntää kortin.
         Muutoin nostaa kortit halutusta kortista lähtien raahattavaksi.
-        
+
         Args:
             card_rank: Kortin indeksi self.cards-listassa.
-        
+
         Returns:
             None, jos nosto ei sallittu, muutoin listan Card-olioita.
         """

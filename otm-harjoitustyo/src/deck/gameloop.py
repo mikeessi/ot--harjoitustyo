@@ -9,7 +9,7 @@ from deck.tableau import Tableau
 
 class GameLoop:
     """Luokka, joka mallintaa pelin päälooppia.
-    
+
     Attributes:
         clock: Clock-olio, toimii kellona.
         event_queue: EventQueue-olio, joka tarkistaa pygame-tapahtumat.
@@ -33,7 +33,7 @@ class GameLoop:
 
     def __init__(self,clock,event_queue,display,renderer,hitboxes):
         """Luokan konstruktori, joka luo peliloopin.
-        
+
         Args:
             clock: Clock-olio, joka toimii kellona.
             event_queue: EventQueue-olio, joka käsittelee pygame-tapahtumat.
@@ -79,10 +79,9 @@ class GameLoop:
 
     def start(self):
         """Aloittaa pelin ja sisältää itse peliloopin.
-        
+
         Ennen pelin alkua sekoittaa pakan ja jakaa kortit alkusijainteihin.
         Loopissa päivittää ruudun tapahtumat.
-        
         """
 
         self.deck.shuffle_deck()
@@ -100,9 +99,9 @@ class GameLoop:
 
     def handle_events(self):
         """Käsittelee tapahtumat, jotka EventQueue-olio antaa.
-        
+
         Käsittelee käyttäjän syötteet ja toimii sopivalla tavalla syötteestä riippuen.
-        
+
         Returns:
             False, kun painetaan Esc, tai ruksia, ts. kun peli halutaan sulkea.
         """
@@ -135,10 +134,10 @@ class GameLoop:
 
     def cancel_drag(self, destination, success):
         """Peruu kortin raahauksen.
-        
+
         Siirtää kortit joko alkuperäiseen sijaintiin tai kohteeseen riippuen siitä, oliko liike sallittu.
         Kutsuu pisteidenpäivttäjää jokaisen siirron jälkeen joka tapauksessa.
-        
+
         Args:
             destination: Raahattujen korttien määränpää.
             success: Tieto siitä, oliko liike sallittu.
@@ -154,7 +153,7 @@ class GameLoop:
 
     def handle_endpiles(self, endpile_index):
         """Käsittelee loppupinojen klikkauksen.
-        
+
         Jos kortteja raahataan, tarkistaa siirron laillisuuden, jos kortteja ei raahata, niin nostaa
         päällimäisen kortin loppupinosta raahattavaksi.
 
@@ -173,7 +172,7 @@ class GameLoop:
 
     def handle_drawpile(self):
         """Käsittelee nostopinon klikkauksen.
-        
+
         Jos korttia raahataan klikatessa, ei tee mitään, jos ei raahata, niin nostaa kortin.
         """
         if self.currently_dragging is True:
@@ -183,7 +182,7 @@ class GameLoop:
 
     def handle_discardpile(self):
         """Käsittelee hylkypinon klikkauksen.
-        
+
         Jos korttia raahataan, niin peruu raahauksen, jos ei raahata, niin ottaa
         päällimäisen kortin raahattavaksi.
         """
@@ -197,7 +196,7 @@ class GameLoop:
 
     def handle_tableaus(self, tableau_index, tableau_rank):
         """Käsittelee pelipinojen klikkauksen.
-        
+
         Jos kortteja ei raahata klikkaushetkellä, koittaa nostaa klikatun kortin raahattavaksi, mikäli sallittua.
         Muutoin tarkistaa, onko raahattujen korttien siirto mahdollista klikattuun pinoon.
 
@@ -258,7 +257,7 @@ class GameLoop:
 
     def calculate_points(self):
         """Laskee pisteet.
-        
+
         Vertaa jokaisella siirrolla korttien määrää eri pinoissa, ja sen perusteella vähentää tai lisää pisteitä.
         Varmistaa, että pisteet eivät mene negatiiviseksi.
         """
@@ -286,12 +285,11 @@ class GameLoop:
             self.points += 5
             self.face_down_cards = self.count_face_down_cards()
 
-        if self.points < 0:
-            self.points = 0
+        self.points = max(self.points, 0)
 
     def count_face_down_cards(self):
         """Laskee pelipinoissa olevien naama alaspäin olevien korttien määrän.
-        
+
         Returns:
             Naama alaspäin olevien korttien määrän.
         """

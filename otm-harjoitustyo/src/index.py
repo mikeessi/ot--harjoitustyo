@@ -7,10 +7,10 @@ from interface.renderer import Renderer
 from interface.hitboxes import Hitboxes as Hb
 
 
-width = 1024
-height = 768
+WIDTH = 1024
+HEIGHT = 768
 
-positions = {"discard": (900,20),
+POSITIONS = {"discard": (900,20),
                 "draw": (800,20),
                 "empty_draw": (800,20),
                 "drag": None,
@@ -26,7 +26,7 @@ positions = {"discard": (900,20),
                 "tableau_5": (600,150),
                 "tableau_6": (700,150)}
 
-images = {"discard": "empty_discard.png",
+IMAGES = {"discard": "empty_discard.png",
         "empty_draw": "empty_draw.png",
         "draw": "back_1.png",
         "empty_0": "empty_0.png",
@@ -41,20 +41,20 @@ images = {"discard": "empty_discard.png",
         "tableau_5": "empty_discard.png",
         "tableau_6": "empty_discard.png"}
 
-card_size = (71,96)
+CARD_SIZE = (71,96)
 
 def main():
 
-    display = pygame.display.set_mode((width, height))
+    display = pygame.display.set_mode((WIDTH, HEIGHT))
 
     pygame.display.set_caption("Solitaire")
 
     pygame.init()
 
     clock = Clock()
-    hitboxes = Hb(positions, card_size)
+    hitboxes = Hb(POSITIONS, CARD_SIZE)
     event_queue = EventQueue()
-    renderer = Renderer(positions, images)
+    renderer = Renderer(POSITIONS, IMAGES)
     game_loop = GameLoop(clock, event_queue, display, renderer, hitboxes)
     menu = Menu(game_loop)
 

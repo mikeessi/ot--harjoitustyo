@@ -32,8 +32,8 @@ class DiscardPile:
         """Renderöintiä varten kertoo, mikä pakan päällimmäinen kortti on.
 
         Returns:
-            Päällimmäinen kortti ja merkkijono "discard", tai None ja merkkijono "discard", jos päällimmäistä
-            korttia ei ole.
+            Päällimmäinen kortti ja merkkijono "discard", tai None ja merkkijono "discard",
+            jos päällimmäistä korttia ei ole.
         """
         if len(self.deck.discard) == 0:
             card = None

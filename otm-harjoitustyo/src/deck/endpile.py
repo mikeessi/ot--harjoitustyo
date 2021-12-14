@@ -2,7 +2,7 @@
 
 class Endpile:
     """Luokka, joka mallintaa pelin loppupinoja.
-    
+
     Attributes:
         deck: Pinoihin liittyvä pelipakka.
         suit: Pinon maa.
@@ -11,7 +11,7 @@ class Endpile:
 
     def __init__(self,suit,deck):
         """Luokan konstruktori, joka luo uuden loppupinon.
-        
+
         Args:
             deck: Pinoon liittyvä pelipakka.
             suit: Pinon maa.
@@ -22,7 +22,7 @@ class Endpile:
 
     def dragged_card(self):
         """Nostaa pinon päällimäisen kortin.
-        
+
         Returns:
             Päällimmäinen kortti, jos sellainen on, muuten None.
         """
@@ -33,7 +33,7 @@ class Endpile:
 
     def update(self):
         """Renderöintiä varten palauttaa tiedon päällimmäisestä kortista.
-        
+
         Returns:
             Päällimmäinen kortti, tieto pinon maasta. Jos pino tyhjä niin None, tieto maasta.
         """
@@ -49,10 +49,10 @@ class Endpile:
 
         Tarkistaa, ettei argumentin olio sisällä yli yhtä korttia, ja sitten tarkistaa, että
         raahatun kortin maa ja arvo ovat sopivat.
-        
+
         Args:
             dragged_card: DraggedCard-olio, joka mallintaa valittua korttia.
-        
+
         Returns:
             True, jos siirto on laillinen, muuten False.
         """

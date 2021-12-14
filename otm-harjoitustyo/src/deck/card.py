@@ -32,7 +32,7 @@ class Card:
         """Muodostaa kortista korttia vastaavan kuvan tiedostonimen merkkijonona.
 
         Returns:
-            Merkkijono, jossa on korttia vastaavan kuvan tiedostonimi. 
+            Merkkijono, jossa on korttia vastaavan kuvan tiedostonimi.
         """
         name = str(self.suit) + "_" + str(self.value)+".png"
         return name
