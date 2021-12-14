@@ -22,3 +22,9 @@ Pelimatto on seuraavanlainen:
 
 ![](./kuvat/pelimatto.png)
 
+Nostopinoa painamalla pinosta nostetaan kortti vieressä olevaan tilaan.
+Nostopinosta nostetun kortin voi mahdollisesti siirtää johonkin pelipinoon.
+Kortteja voi myös siirrellä pelipinojen välillä joko yhden tai useamman kerrallaan.
+Korttien siirtely tapahtuu kortteja klikkaamalla, ja viemällä kortti haluttuun sijaintiin.
+Pelin päämäärä lyhykäisyydessään on siirtää kaikki kortit ylhäällä oleviin loppupinoihin ässästä kuninkaaseen.
+Tarkemmat pelisäännöt löytyvät [täältä](https://www.pasianssit.net/saannot.php) kohdasta "Klondiken säännöt".
