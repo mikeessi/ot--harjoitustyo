@@ -1,7 +1,6 @@
 # Ohjelmistotekniikka, harjoitustyö
 
 Sovelluksen tarkoitus on toimia digitaalisena versiona tunnetusta pasianssin Klondike-versiosta.
-Testaajalle HUOM!: Tällä hetkellä pelipakkojen korttien siirteleminen onnistuu korttien yläreunasta painamalla.
 
 - [Vaatimusmäärittely](./otm-harjoitustyo/dokumentaatio/vaatimusmaarittely.md)
 - [Tuntikirjanpito](./otm-harjoitustyo/dokumentaatio/tuntikirjanpito.md)
