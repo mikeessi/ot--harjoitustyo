@@ -5,11 +5,12 @@ class Renderer:
 
     def __init__(self, positions, images):
 
+        self.font = pygame.font.Font(pygame.font.get_default_font(), 24)
         self.images = images
 
         self.positions = positions
 
-    def render(self, display, others_list, tableau_list, dragged_cards):
+    def render(self, display, others_list, tableau_list, dragged_cards, points):
         display.fill((0,130,25))
         for tableau in tableau_list:
             self.render_tableau(display, tableau)
@@ -17,6 +18,7 @@ class Renderer:
             self.render_help(display, sprite)
         if dragged_cards:
             self.render_dragged(display, dragged_cards)
+        self.render_points(display, points)
         pygame.display.flip()
 
 
@@ -41,7 +43,7 @@ class Renderer:
             pos_adjust = 0
             for card in tableau.cards:
                 if card.face_down is True:
-                    card_img = load_image("back_1.png")
+                    card_img = load_image(self.images["draw"])
                 else:
                     card_img = load_image(str(card))
                 pos = (pos_base[0],pos_base[1]+pos_adjust)
@@ -56,3 +58,7 @@ class Renderer:
             pos = (pos_base[0],pos_base[1]+pos_adjust)
             pos_adjust +=20
             display.blit(card_img, pos)
+
+    def render_points(self, display, points):
+        text_surface = pygame.font.Font.render(self.font, f"Score: {points}", True, (0,0,0))
+        display.blit(text_surface, (800,600))

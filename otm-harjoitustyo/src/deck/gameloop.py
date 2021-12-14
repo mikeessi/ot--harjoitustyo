@@ -71,6 +71,7 @@ class GameLoop:
         self.no_hits = True
 
         self.points = 0
+        self.face_down_cards = 21
         self.deck_length = 24
         self.tabl_lenght = 28
         self.endpile_length = 0
@@ -92,7 +93,7 @@ class GameLoop:
                 break
             
             self.renderer.render(self.display,self.renderer_list,self.tableau_list,
-            self.dragged_card)
+            self.dragged_card, self.points)
 
 
         self.clock.tick(60)
@@ -281,8 +282,22 @@ class GameLoop:
         self.deck_length = curr_deck_length
         self.tabl_lenght = curr_tabl_lengths
 
+        if self.count_face_down_cards() < self.face_down_cards:
+            self.points += 5
+            self.face_down_cards = self.count_face_down_cards()
+
         if self.points < 0:
             self.points = 0
 
-
+    def count_face_down_cards(self):
+        """Laskee pelipinoissa olevien naama alaspäin olevien korttien määrän.
         
+        Returns:
+            Naama alaspäin olevien korttien määrän.
+        """
+        curr_face_down_cards = 0
+        for tabl in self.tableau_list:
+            for card in tabl.cards:
+                if card.face_down is True:
+                    curr_face_down_cards +=1
+        return curr_face_down_cards
