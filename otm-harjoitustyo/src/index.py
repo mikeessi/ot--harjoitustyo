@@ -52,11 +52,8 @@ def main():
     pygame.init()
 
     clock = Clock()
-    hitboxes = Hb(POSITIONS, CARD_SIZE)
     event_queue = EventQueue()
-    renderer = Renderer(POSITIONS, IMAGES)
-    game_loop = GameLoop(clock, event_queue, display, renderer, hitboxes)
-    menu = Menu(game_loop)
+    menu = Menu(POSITIONS, CARD_SIZE, IMAGES, event_queue, clock, display)
 
     menu.menu.mainloop(display)
 

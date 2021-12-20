@@ -123,9 +123,6 @@ class GameLoop:
                     self.handle_no_hits()
 
             if event.type == KEYDOWN:
-                if event.key == K_F2:
-                    self.restart()
-                    return False
                 if event.key == K_ESCAPE:
                     return False
 
@@ -230,30 +227,6 @@ class GameLoop:
                 self.tableau_list[i-1].cards.append(card)
         for tabl in self.tableau_list:
             tabl.cards[-1].face_down = False
-
-    def restart(self):
-        """Aloittaa pelin alusta. Nollaa kaiken ja luo uudet oliot.
-        """
-        self.points = 0
-        self.deck = Deck()
-        self.discardpile = DiscardPile(self.deck)
-        self.drawpile = Drawpile(self.deck)
-
-        self.renderer_list = [self.drawpile,self.discardpile]
-
-        self.endpile_list = []
-        for suit in range(4):
-            endpile = Endpile(suit,self.deck)
-            self.renderer_list.append(endpile)
-            self.endpile_list.append(endpile)
-
-        self.tableau_list = []
-
-        for tabl_id in range(7):
-            tableau = Tableau(tabl_id)
-            self.tableau_list.append(tableau)
-
-        self.start()
 
     def calculate_points(self):
         """Laskee pisteet.
