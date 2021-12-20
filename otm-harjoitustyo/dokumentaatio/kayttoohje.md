@@ -30,6 +30,8 @@ Kortteja voi myös siirrellä pelipinojen välillä joko yhden tai useamman kerr
 
 Korttien siirtely tapahtuu kortteja klikkaamalla, ja viemällä kortti haluttuun sijaintiin.
 
+Kortin raahaamisen voi perua hiiren oikealla painikkeella.
+
 Pelin päämäärä lyhykäisyydessään on siirtää kaikki kortit ylhäällä oleviin loppupinoihin ässästä kuninkaaseen.
 
 Tarkemmat pelisäännöt löytyvät [täältä](https://www.pasianssit.net/saannot.php) kohdasta "Klondiken säännöt".

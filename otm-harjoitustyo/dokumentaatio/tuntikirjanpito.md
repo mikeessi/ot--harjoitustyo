@@ -16,4 +16,5 @@
 | 13.12 | 2    | hitbox-ongelma korjattu ja pistesysteemiä kehitelty |
 | 13.12 | 2    | docstringejä kirjoiteltu |
 | 14.12 | 5    | pygame_menu-kirjastoon tutustuminen, lisää testausta, dokumentaation päivitys | 
-| yht   | 44   | |
+| 20.12 | 1    | pientä refaktorointia, korttien selkävaihtoehdot toimintaan, pientä lisäystä toiminnallisuuteen |
+| yht   | 45   | |
