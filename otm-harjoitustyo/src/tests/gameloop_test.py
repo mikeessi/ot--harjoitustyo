@@ -89,3 +89,61 @@ class TestGameloop(unittest.TestCase):
         self.gl.no_hits = False
         self.gl.handle_no_hits()
         self.assertEqual(self.gl.currently_dragging, True)
+
+    def test_handle_tableaus_add_card_success(self):
+        self.gl.tableau_list[0].cards = []
+        self.gl.currently_dragging = True
+        self.gl.dragged_card = DraggedCard(self.gl.deck.discard, [Card(12,3)])
+        self.gl.handle_tableaus(0,0)
+        self.assertEqual(len(self.gl.tableau_list[0].cards),1)
+
+    def test_handle_tableaus_drag_card_success(self):
+        self.gl.tableau_list[0].cards.append(Card(1,3))
+        self.gl.currently_dragging = False
+        self.gl.handle_tableaus(0,0)
+        self.assertIsNotNone(self.gl.dragged_card)
+    
+    def test_handle_tableaus_drag_card_miss(self):
+        self.gl.dragged_card = None
+        self.gl.currently_dragging = False
+        self.gl.handle_tableaus(0,15)
+        self.assertIsNone(self.gl.dragged_card)
+
+    def test_handle_tableaus_dragged_card_check_fail(self):
+        self.gl.currently_dragging = True
+        self.gl.dragged_card = DraggedCard(self.gl.deck.discard, [Card(12,3)])
+        self.gl.handle_tableaus(0,0)
+        self.assertEqual(len(self.gl.tableau_list[0].cards),1)
+
+    def test_calculate_points_from_deck_to_tabl(self):
+        card = self.gl.deck.cards.pop()
+        self.gl.tableau_list[1].cards.append(card)
+        self.gl.calculate_points()
+        self.assertEqual(self.gl.points, 5)
+
+    def test_calculate_points_from_tabl_to_endpile(self):
+        card = self.gl.tableau_list[1].cards.pop()
+        self.gl.endpile_list[1].pile.append(card)
+        self.gl.calculate_points()
+        self.assertEqual(self.gl.points, 10)
+
+    def test_calculate_points_from_deck_to_endpile(self):
+        card = self.gl.deck.cards.pop()
+        self.gl.endpile_list[1].pile.append(card)
+        self.gl.calculate_points()
+        self.assertEqual(self.gl.points, 10)
+
+    def test_calculate_points_from_endpile_to_tabl_negative(self):
+        card = self.gl.deck.cards.pop()
+        self.gl.endpile_list[1].pile.append(card)
+        self.gl.calculate_points()
+        card = self.gl.endpile_list[1].pile.pop()
+        self.gl.tableau_list[1].cards.append(card)
+        self.gl.calculate_points()
+        self.assertEqual(self.gl.points, 0)
+
+    def test_calculate_points_turn_face_down_card(self):
+        self.gl.tableau_list[1].cards.pop()
+        self.gl.tableau_list[1].cards[-1].face_down = False
+        self.gl.calculate_points()
+        self.assertEqual(self.gl.points, 5)

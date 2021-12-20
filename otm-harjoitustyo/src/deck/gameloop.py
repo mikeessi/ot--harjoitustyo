@@ -1,5 +1,5 @@
 import pygame
-from pygame.constants import K_ESCAPE, K_F2, MOUSEBUTTONDOWN, KEYDOWN
+from pygame.constants import K_ESCAPE, MOUSEBUTTONDOWN, KEYDOWN
 from deck.draggedcard import DraggedCard
 from deck.endpile import Endpile
 from deck.drawpile import Drawpile
@@ -90,7 +90,7 @@ class GameLoop:
         while True:
             if self.handle_events() is False:
                 break
-            
+
             self.renderer.render(self.display,self.renderer_list,self.tableau_list,
             self.dragged_card, self.points)
 
@@ -106,7 +106,7 @@ class GameLoop:
             False, kun painetaan Esc, tai ruksia, ts. kun peli halutaan sulkea.
         """
         for event in self.event_queue.get():
-            if event.type == MOUSEBUTTONDOWN:
+            if event.type == MOUSEBUTTONDOWN and event.button == 1:
                 mouse_pos = pygame.mouse.get_pos()
                 self.no_hits = False
                 pile, index, rank = self.hb.check_rects(mouse_pos, self.tableau_list)
@@ -122,6 +122,10 @@ class GameLoop:
                     self.no_hits = True
                     self.handle_no_hits()
 
+            if event.type == MOUSEBUTTONDOWN and event.button == 3:
+                if self.currently_dragging is True:
+                    self.cancel_drag(None, False)
+
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
                     return False
@@ -132,7 +136,8 @@ class GameLoop:
     def cancel_drag(self, destination, success):
         """Peruu kortin raahauksen.
 
-        Siirtää kortit joko alkuperäiseen sijaintiin tai kohteeseen riippuen siitä, oliko liike sallittu.
+        Siirtää kortit joko alkuperäiseen sijaintiin tai kohteeseen riippuen siitä,
+        oliko liike sallittu.
         Kutsuu pisteidenpäivttäjää jokaisen siirron jälkeen joka tapauksessa.
 
         Args:
@@ -194,7 +199,8 @@ class GameLoop:
     def handle_tableaus(self, tableau_index, tableau_rank):
         """Käsittelee pelipinojen klikkauksen.
 
-        Jos kortteja ei raahata klikkaushetkellä, koittaa nostaa klikatun kortin raahattavaksi, mikäli sallittua.
+        Jos kortteja ei raahata klikkaushetkellä,
+        koittaa nostaa klikatun kortin raahattavaksi, mikäli sallittua.
         Muutoin tarkistaa, onko raahattujen korttien siirto mahdollista klikattuun pinoon.
 
         Args:
@@ -231,7 +237,8 @@ class GameLoop:
     def calculate_points(self):
         """Laskee pisteet.
 
-        Vertaa jokaisella siirrolla korttien määrää eri pinoissa, ja sen perusteella vähentää tai lisää pisteitä.
+        Vertaa jokaisella siirrolla korttien määrää eri pinoissa,
+        ja sen perusteella vähentää tai lisää pisteitä.
         Varmistaa, että pisteet eivät mene negatiiviseksi.
         """
         curr_tabl_lengths = sum([len(tabl.cards) for tabl in self.tableau_list])
@@ -246,7 +253,7 @@ class GameLoop:
 
         elif curr_tabl_lengths < self.tabl_lenght and curr_endpile_lengths > self.endpile_length:
             self.points += 10
-            
+
         elif curr_tabl_lengths > self.tabl_lenght and curr_endpile_lengths < self.endpile_length:
             self.points -= 15
 

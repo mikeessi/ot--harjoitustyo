@@ -1,10 +1,7 @@
 import pygame
-from deck.gameloop import GameLoop
 from interface.clock import Clock
 from interface.eventqueue import EventQueue
 from interface.menu import Menu
-from interface.renderer import Renderer
-from interface.hitboxes import Hitboxes as Hb
 
 
 WIDTH = 1024

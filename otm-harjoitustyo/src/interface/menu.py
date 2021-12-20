@@ -27,7 +27,8 @@ class Menu:
         self.renderer = Renderer(self.positions, self.images)
 
     def start_game(self):
-        game_loop = GameLoop(self.clock, self.event_queue, self.display, self.renderer, self.hitboxes)
+        game_loop = GameLoop(self.clock, self.event_queue,
+                            self.display, self.renderer, self.hitboxes)
         game_loop.start()
 
     def show_hiscores(self):

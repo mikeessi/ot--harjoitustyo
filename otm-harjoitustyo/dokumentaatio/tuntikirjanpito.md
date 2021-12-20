@@ -17,4 +17,5 @@
 | 13.12 | 2    | docstringejä kirjoiteltu |
 | 14.12 | 5    | pygame_menu-kirjastoon tutustuminen, lisää testausta, dokumentaation päivitys | 
 | 20.12 | 1    | pientä refaktorointia, korttien selkävaihtoehdot toimintaan, pientä lisäystä toiminnallisuuteen |
-| yht   | 45   | |
+| 20.12 | 1    | lisätty testejä + linting |
+| yht   | 46   | |
