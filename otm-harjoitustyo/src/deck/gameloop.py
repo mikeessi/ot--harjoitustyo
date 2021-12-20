@@ -138,7 +138,7 @@ class GameLoop:
 
         Siirtää kortit joko alkuperäiseen sijaintiin tai kohteeseen riippuen siitä,
         oliko liike sallittu.
-        Kutsuu pisteidenpäivttäjää jokaisen siirron jälkeen joka tapauksessa.
+        Kutsuu pisteidenpäivittäjää jokaisen siirron jälkeen joka tapauksessa.
 
         Args:
             destination: Raahattujen korttien määränpää.
