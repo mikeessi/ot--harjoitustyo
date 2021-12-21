@@ -91,6 +91,10 @@ class GameLoop:
             if self.handle_events() is False:
                 break
 
+            if self.check_game_finish() is True:
+                self.end_game()
+                break
+
             self.renderer.render(self.display,self.renderer_list,self.tableau_list,
             self.dragged_card, self.points)
 
@@ -279,3 +283,14 @@ class GameLoop:
                 if card.face_down is True:
                     curr_face_down_cards +=1
         return curr_face_down_cards
+
+    def check_game_finish(self):
+        card_counter = 0
+        for endpile in self.endpile_list:
+            card_counter += len(endpile.pile)
+        if card_counter == 52:
+            return True
+        return False
+
+    def end_game(self):
+        pass
