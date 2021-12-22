@@ -10,9 +10,9 @@ Menun navigointi tapahtuu joko hiirellä tai nuolinäppäimillä ja enterillä.
 
 Uuden pelin voi aloittaa valitsemalla New game -painikkeen.
 
-Cardback -valikosta voi vaihtaa korttien selkäkuvaa !TODO!
+Cardback -valikosta voi vaihtaa korttien selkäkuvaa.
 
-Hiscores -painikkeesta pääsee katsomaan parhaat tulokset. !TODO!
+Hiscores -painikkeesta pääsee katsomaan parhaat tulokset.
 
 Quit -painike poistuu pelistä.
 

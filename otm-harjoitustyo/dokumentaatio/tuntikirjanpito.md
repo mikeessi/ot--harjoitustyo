@@ -18,4 +18,5 @@
 | 14.12 | 5    | pygame_menu-kirjastoon tutustuminen, lisää testausta, dokumentaation päivitys | 
 | 20.12 | 1    | pientä refaktorointia, korttien selkävaihtoehdot toimintaan, pientä lisäystä toiminnallisuuteen |
 | 20.12 | 1    | lisätty testejä + linting |
-| yht   | 46   | |
+| 22.12 | 6    | loput ohjelman toiminnallisuudesta lisätty, testejä, linting |
+| yht   | 52   | |

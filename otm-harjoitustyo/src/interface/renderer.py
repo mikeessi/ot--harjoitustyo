@@ -62,3 +62,13 @@ class Renderer:
     def render_points(self, display, points):
         text_surface = pygame.font.Font.render(self.font, f"Score: {points}", True, (0,0,0))
         display.blit(text_surface, (800,600))
+
+    def render_end_screen(self, display, points):
+        display.fill((50,50,50))
+        score_display = pygame.font.Font.render(self.font, f"Game won! Score: {points}",
+                                                 True, (255,255,255))
+        quit_message = pygame.font.Font.render(self.font, "Press Esc to go back to menu.",
+                                                 True, (255,255,255))
+        display.blit(score_display, (400,300))
+        display.blit(quit_message, (50,700))
+        pygame.display.flip()

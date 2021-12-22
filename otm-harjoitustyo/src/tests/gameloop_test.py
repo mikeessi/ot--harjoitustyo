@@ -147,3 +147,33 @@ class TestGameloop(unittest.TestCase):
         self.gl.tableau_list[1].cards[-1].face_down = False
         self.gl.calculate_points()
         self.assertEqual(self.gl.points, 5)
+
+    def test_check_game_finish_true(self):
+        for endpile in self.gl.endpile_list:
+            for i in range(13):
+                endpile.pile.append(Card(1,3))
+        val = self.gl.check_game_finish()
+        self.assertEqual(val, True)
+    
+    def test_check_game_finish_false(self):
+        self.gl.endpile_list[1].pile.append(Card(1,3))
+        val = self.gl.check_game_finish()
+        self.assertEqual(val, False)
+
+    def test_add_bonus_points_full(self):
+        for i in range(10):
+            self.gl.deck.draw_card()
+        self.gl.add_bonus_points()
+        self.assertEqual(self.gl.points, 100)
+
+    def test_add_bonus_points_partial(self):
+        for i in range(50):
+            self.gl.deck.draw_card()
+        self.gl.add_bonus_points()
+        self.assertEqual(self.gl.points, 30)
+    
+    def test_add_bonus_points_nothing(self):
+        for i in range(100):
+            self.gl.deck.draw_card()
+        self.gl.add_bonus_points()
+        self.assertEqual(self.gl.points, 0)

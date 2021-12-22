@@ -47,6 +47,7 @@ class GameLoop:
         self.display = display
         self.renderer = renderer
         self.hb = hitboxes
+        self.user_name = None
 
         self.deck = Deck()
         self.discardpile = DiscardPile(self.deck)
@@ -89,11 +90,12 @@ class GameLoop:
 
         while True:
             if self.handle_events() is False:
-                break
+                return self.points, 0
 
             if self.check_game_finish() is True:
+                self.add_bonus_points()
                 self.end_game()
-                break
+                return self.points, 1
 
             self.renderer.render(self.display,self.renderer_list,self.tableau_list,
             self.dragged_card, self.points)
@@ -285,6 +287,12 @@ class GameLoop:
         return curr_face_down_cards
 
     def check_game_finish(self):
+        """Laskee loppupinoissa olevien korttien määrän.
+
+        Returns:
+            True, jos koko korttipakka on loppupinoissa.
+            False, muutoin.
+        """
         card_counter = 0
         for endpile in self.endpile_list:
             card_counter += len(endpile.pile)
@@ -292,5 +300,21 @@ class GameLoop:
             return True
         return False
 
+    def add_bonus_points(self):
+        """Lisää pelin lopussa pisteitä sen perusteella, kuinka monta kertaa
+        pakka on käännetty.
+        """
+        if self.deck.deck_flips == 0:
+            self.points += 100
+        elif self.deck.deck_flips <= 3:
+            self.points += 30
+
     def end_game(self):
-        pass
+        """Looppi, joka näyttää pelin loppuruudun."""
+        while True:
+            for event in self.event_queue.get():
+                if event.type == KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        return
+
+            self.renderer.render_end_screen(self.display, self.points)
