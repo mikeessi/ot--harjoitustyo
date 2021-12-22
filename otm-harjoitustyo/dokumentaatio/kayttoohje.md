@@ -8,7 +8,7 @@ Sovellus käynnistyy alkumenuun:
 
 Menun navigointi tapahtuu joko hiirellä tai nuolinäppäimillä ja enterillä.
 
-Name-ruutuun voi kirjoittaa halutun nimen. Nimi voi olla maksimissaan 8 merkkiä pitkä, ja hyväksyy ainoastaa pieniä, ja isoja kirjaimia. Ruudun voi myös jättää tyhjäksi, mutta silloin ei saa omaa nimeä näkyviin hiscoreihin.
+Name-ruutuun voi kirjoittaa halutun nimen. Nimi voi olla maksimissaan 8 merkkiä pitkä, ja hyväksyy ainoastaan pieniä ja isoja kirjaimia. Ruudun voi myös jättää tyhjäksi, mutta silloin ei saa omaa nimeä näkyviin hiscoreihin.
 
 Uuden pelin voi aloittaa valitsemalla New game -painikkeen.
 
