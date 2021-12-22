@@ -6,6 +6,18 @@ Ohjelmaa on testattu unittestin avulla sekä yksikkötestein, että integraatiot
 
 ### Sovelluslogiikka
 
-Sovelluslogiikasta vastaavat luokat hakemistossa [deck](../src/deck/) on testattu niitä vastaavilla [testiluokilla](../src/tests/). Ainoat sovelluslogiikan luokat, joilla yksikkötestausta ei ole, ovat luokat [Endpile](../src/deck/endpile.py), sekä [Tableau](../src/deck/tableau.py), mutta näitäkin luokkia testataan integraatiotesteissä.
+Sovelluslogiikasta vastaavat luokat hakemistossa [deck](../src/deck/) on testattu niitä vastaavilla [testiluokilla](../src/tests/). Jokainen sovelluslogiikkaa vastaava testiluokka testaa luokkaa yksikkötestein, paitsi [TestGameLoop](../src/tests/test_gameloop.py), jossa on myös integraatiotestejä.
+
+### Testauskattavuus
+
+Sovelluslogiikan testien haarautumakattavuus on 82%
+
+![](./kuvat/haarautumakattavuus.png)
+
+Käytännössä ainoa asia, mitä sovelluslogiikan luokista ei testattu, on GameLoop-luokan tapahtumankäsittelijät, mutta tämän olisi varmaankin voinut välttää pitämällä tapahtumankäsittelijän erillään kaikesta muusta. 
+
+### Järjestelmätestaus
+
+Sovellusta on myös järjestelmätestatu manuaalisesti.
 
 
