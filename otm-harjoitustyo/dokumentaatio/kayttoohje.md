@@ -1,5 +1,25 @@
 # Käyttöohje
 
+Lataa ohjelman viimeisimmän [version](https://github.com/mikeessi/ot--harjoitustyo/releases) lähdekoodi painamalla _Assets_-osion alta _Source code_.
+
+## Ohjelman käynnistäminen
+
+## Asennus
+
+1. Siirry kansioon `/otm-harjoitustyo`
+
+2. Asenna riippuvuudet komennolla:
+
+```bash
+poetry install
+```
+
+3. Käynnistä sovellus komennolla:
+
+```bash
+poetry run invoke start
+```
+
 ## Alkuvalikko
 
 Sovellus käynnistyy alkumenuun:
