@@ -19,4 +19,6 @@
 | 20.12 | 1    | pientä refaktorointia, korttien selkävaihtoehdot toimintaan, pientä lisäystä toiminnallisuuteen |
 | 20.12 | 1    | lisätty testejä + linting |
 | 22.12 | 6    | loput ohjelman toiminnallisuudesta lisätty, testejä, linting |
-| yht   | 52   | |
+| 22.12 | 3    | testejä, dokumentaatiota |
+| 23.12 | 2    | dokumentaatiota päivitetty |
+| yht   | 56   | |
