@@ -6,7 +6,7 @@ Ohjelmaa on testattu unittestin avulla sekä yksikkötestein, että integraatiot
 
 ### Sovelluslogiikka
 
-Sovelluslogiikasta vastaavat luokat hakemistossa [deck](../src/deck/) on testattu niitä vastaavilla [testiluokilla](../src/tests/). Jokainen sovelluslogiikkaa vastaava testiluokka testaa luokkaa yksikkötestein, paitsi [TestGameLoop](../src/tests/test_gameloop.py), jossa on myös integraatiotestejä.
+Sovelluslogiikasta vastaavat luokat hakemistossa [deck](../src/deck/) on testattu niitä vastaavilla [testiluokilla](../src/tests/). Jokainen sovelluslogiikkaa vastaava testiluokka testaa luokkaa yksikkötestein, paitsi [TestGameLoop](../src/tests/gameloop_test.py), jossa on myös integraatiotestejä.
 
 ### Testauskattavuus
 
