@@ -2,6 +2,13 @@ import pygame
 from load_image import load_image
 
 class Renderer:
+    """Luokka, joka hoitaa pelimaton ja sen objektien piirtämisen.
+
+    Attributes:
+        font: Fontti, jota piirretyissä teksteissä käytetään.
+        images: Dict, jossa tieto korttien kuvien tiedostonimistä.
+        positions: Dict, jossa tieto korttipinojen sijainnista matolla.
+    """
 
     def __init__(self, positions, images):
 
@@ -11,6 +18,16 @@ class Renderer:
         self.positions = positions
 
     def render(self, display, others_list, tableau_list, dragged_cards, points):
+        """Piirtää pelimaton ja organisoi muiden objektien siihen piirtämisen.
+
+        Args:
+            display: Peliruutu.
+            others_list: Lista objekteista, jotka piirretään poislukien
+                         pelipinot ja raahatut kortit.
+            tableau_list: Lista piirrettävistä pelipinoista.
+            dragged_cards: Tällä hetkellä raahatut kortit.
+            points: Tähän mennessä kerätyt pisteet.
+        """
         display.fill((0,130,25))
         for tableau in tableau_list:
             self.render_tableau(display, tableau)
@@ -23,6 +40,12 @@ class Renderer:
 
 
     def render_help(self, display, sprite):
+        """Hoitaa kaiken muun piirtämisen, paitsi pelipinot ja raahatut kortit.
+
+        Args:
+            display: Peliruutu.
+            sprite: Objekti-mitä piirretään.
+        """
         if sprite:
             card, origin = sprite.update()
             if card is not None:
@@ -34,6 +57,12 @@ class Renderer:
         display.blit(card_img, pos)
 
     def render_tableau(self, display, tableau):
+        """Hoitaa pelipinojen piirtämisen.
+
+        Args:
+            display: Peliruutu.
+            tableau: Piirrettävä pelipino.
+        """
         tab = f"tableau_{tableau.tab_id}"
         pos_base = self.positions[tab]
         if len(tableau.cards) == 0:
@@ -51,6 +80,12 @@ class Renderer:
                 pos_adjust += 20
 
     def render_dragged(self, display, dragged_cards):
+        """Hoitaa raahatun kortin piirtämisen.
+
+        Args:
+            display: Peliruutu.
+            dragged_cards: Tällä hetkellä raahatut kortit.
+        """
         pos_adjust = 0
         pos_base = pygame.mouse.get_pos()
         for card in dragged_cards.cards:
@@ -60,10 +95,21 @@ class Renderer:
             display.blit(card_img, pos)
 
     def render_points(self, display, points):
+        """Piirtää tekstin, jossa lukee tämänhetkinen pistetilanne.
+
+        Args:
+            display: Peliruutu.
+            points: Tämänhetkiset pisteet."""
         text_surface = pygame.font.Font.render(self.font, f"Score: {points}", True, (0,0,0))
         display.blit(text_surface, (800,600))
 
     def render_end_screen(self, display, points):
+        """Piirtää pelin loppuruudun ja sen viestit.
+
+        Args:
+            display: Peliruutu.
+            points: Pisteet pelin lopussa.
+        """
         display.fill((50,50,50))
         score_display = pygame.font.Font.render(self.font, f"Game won! Score: {points}",
                                                  True, (255,255,255))
