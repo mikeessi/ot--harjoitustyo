@@ -4,6 +4,12 @@
 
 Sovellus koostuu [interface](../src/interface/)-hakemistosta, jossa on käyttöliittymään liittyvät luokat, [deck](../src/deck/)-hakemistosta, jossa on sovelluslogiikan kannalta tärkeät luokat ja [data](../src/data/)-hakemistosta, jossa on tietokantaoperaatioihin liittyvät luokat, sekä tallennettu tietokanta. 
 
+## Käyttöliittymä
+
+Ohjelman käyttöliittymän voi jakaa menuun, ja itse peliin. Ohjelman menut on toteutettu omana [Menu](../src/interface/menu.py)-luokkana. Itse pelimaton käyttöliittymän toteuttaa pääasiassa luokat
+- [Hitboxes](../src/interface/hitboxes.py), joka mallintaa pelimaton objektien hitboxeja, sekä
+- [Renderer](../src/interface/renderer.py), joka piirtää objektit pelimatolle.
+
 ## Sovelluslogiikka
 
 Sovelluksen logiikka koostuu kortteja, korttipakkaa ja pelimatolla olevia pinoja mallintavat luokat:

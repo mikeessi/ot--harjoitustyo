@@ -2,7 +2,7 @@
 
 ## Sovelluksen tarkoitus
 
-Digitaalinen versio kaikkien tuntemasta korttipelistä, pasianssista.
+Digitaalinen versio kaikkien tuntemasta korttipelistä, Klondike-pasianssista.
 
 ## Suunnitellut toiminnallisuudet
 
