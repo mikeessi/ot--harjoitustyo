@@ -18,6 +18,14 @@ Käytännössä ainoa asia, mitä sovelluslogiikan luokista ei testattu, on Game
 
 ### Järjestelmätestaus
 
-Sovellusta on myös järjestelmätestatu manuaalisesti.
+Ohjelmaa on myös järjestelmätestatu manuaalisesti.
+
+### Asennus
+
+Ohjelma on haettu ja sitä on testattu [käyttöohjeen](./kayttoohje.md) kuvaamalla tavalla Windows- ja Linux-ympäristöissä.
+
+### Toiminnallisuudet
+
+Kaikki [määrittelydokumentin](./vaatimusmaarittely.md) perusversion tarjoama toiminnallisuus on testattu, ja kaikki käyttöohjeessa esitellyt toiminnallisuudet on käyty läpi.
 
 
