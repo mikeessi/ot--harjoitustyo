@@ -8,6 +8,8 @@ Sovellus käynnistyy alkumenuun:
 
 Menun navigointi tapahtuu joko hiirellä tai nuolinäppäimillä ja enterillä.
 
+Name-ruutuun voi kirjoittaa halutun nimen. Nimi voi olla maksimissaan 8 merkkiä pitkä, ja hyväksyy ainoastaa pieniä, ja isoja kirjaimia. Ruudun voi myös jättää tyhjäksi, mutta silloin ei saa omaa nimeä näkyviin hiscoreihin.
+
 Uuden pelin voi aloittaa valitsemalla New game -painikkeen.
 
 Cardback -valikosta voi vaihtaa korttien selkäkuvaa.
@@ -29,6 +31,8 @@ Nostopinosta nostetun kortin voi mahdollisesti siirtää johonkin pelipinoon.
 Kortteja voi myös siirrellä pelipinojen välillä joko yhden tai useamman kerrallaan.
 
 Korttien siirtely tapahtuu kortteja klikkaamalla, ja viemällä kortti haluttuun sijaintiin.
+
+Jotta kortin siirtäminen onnistuu, täytyy kortin vasemman yläkulman olla halutun pinon päällä.
 
 Kortin raahaamisen voi perua hiiren oikealla painikkeella.
 
