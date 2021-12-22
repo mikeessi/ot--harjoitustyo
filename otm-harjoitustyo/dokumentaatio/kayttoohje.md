@@ -4,8 +4,6 @@ Lataa ohjelman viimeisimmän [version](https://github.com/mikeessi/ot--harjoitus
 
 ## Ohjelman käynnistäminen
 
-## Asennus
-
 1. Siirry kansioon `/otm-harjoitustyo`
 
 2. Asenna riippuvuudet komennolla:
