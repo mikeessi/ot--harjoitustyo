@@ -1,4 +1,4 @@
-# Ohjelmistotekniikka, harjoitustyö
+# Klondike-pasianssi
 
 Sovelluksen tarkoitus on toimia digitaalisena versiona tunnetusta pasianssin Klondike-versiosta.
 
