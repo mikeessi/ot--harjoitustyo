@@ -2,7 +2,7 @@
 
 ## Rakenne
 
-Sovellus koostuu [interface](../src/interface/)-hakemistosta, jossa on käyttöliittymään liittyvät luokat, sekä [deck](../src/deck/)-hakemistosta, jossa on sovelluslogiikan kannalta tärkeät luokat.
+Sovellus koostuu [interface](../src/interface/)-hakemistosta, jossa on käyttöliittymään liittyvät luokat, [deck](../src/deck/)-hakemistosta, jossa on sovelluslogiikan kannalta tärkeät luokat ja [data](../src/data/)-hakemistosta, jossa on tietokantaoperaatioihin liittyvät luokat, sekä tallennettu tietokanta. 
 
 ## Sovelluslogiikka
 
