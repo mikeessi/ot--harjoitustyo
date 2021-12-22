@@ -5,6 +5,7 @@ Sovelluksen tarkoitus on toimia digitaalisena versiona tunnetusta pasianssin Klo
 - [Vaatimusmäärittely](./otm-harjoitustyo/dokumentaatio/vaatimusmaarittely.md)
 - [Tuntikirjanpito](./otm-harjoitustyo/dokumentaatio/tuntikirjanpito.md)
 - [Arkkitehtuurikuvaus](./otm-harjoitustyo/dokumentaatio/arkkitehtuuri.md)
+- [Testausdokumentti](./otm-harjoitustyo/dokumentaatio/testaus.md)
 - [Käyttöohje](./otm-harjoitustyo/dokumentaatio/kayttoohje.md)
 
 Projektin viimeisin [release](https://github.com/mikeessi/ot--harjoitustyo/releases).
