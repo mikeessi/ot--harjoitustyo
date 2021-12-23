@@ -18,7 +18,7 @@ Käytännössä ainoa asia, mitä sovelluslogiikan luokista ei testattu, on Game
 
 ## Järjestelmätestaus
 
-Ohjelmaa on myös järjestelmätestatu manuaalisesti.
+Ohjelmaa on myös järjestelmätestattu manuaalisesti.
 
 ### Asennus
 
