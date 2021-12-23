@@ -16,7 +16,7 @@ Sovelluslogiikan testien haarautumakattavuus on 82%
 
 Käytännössä ainoa asia, mitä sovelluslogiikan luokista ei testattu, on GameLoop-luokan tapahtumankäsittelijät, mutta tämän olisi varmaankin voinut välttää pitämällä tapahtumankäsittelijän erillään kaikesta muusta. 
 
-### Järjestelmätestaus
+## Järjestelmätestaus
 
 Ohjelmaa on myös järjestelmätestatu manuaalisesti.
 
@@ -26,6 +26,6 @@ Ohjelma on haettu ja sitä on testattu [käyttöohjeen](./kayttoohje.md) kuvaama
 
 ### Toiminnallisuudet
 
-Kaikki [määrittelydokumentin](./vaatimusmaarittely.md) perusversion tarjoama toiminnallisuus on testattu, ja kaikki käyttöohjeessa esitellyt toiminnallisuudet on käyty läpi.
+Kaikki [vaatimusmäärittelydokumentin](./vaatimusmaarittely.md) perusversion tarjoama toiminnallisuus on testattu, ja kaikki käyttöohjeessa esitellyt toiminnallisuudet on käyty läpi.
 
 
